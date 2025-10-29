@@ -1,0 +1,39 @@
+$colors: (
+  "blue": #576ee0,
+  "white": #f1f2f3,
+  "fade-white": #babcc4,
+  "purple": #1d2135,
+);
+
+@each $key, $val in $colors {
+  .text-#{$key} {
+    color: $val !important;
+  }
+
+  .bg-#{$key} {
+    background-color: $val;
+  }
+
+  .text-hover-#{$key} {
+    &:hover {
+      color: $val;
+      transition: all 0.3s;
+    }
+  }
+
+  @for $i from 1 through 3 {
+    .text-hover-light-#{$i}-#{$key} {
+      &:hover {
+        color: mix(white, $val, $i * 10%) !important;
+        transition: all 0.3s !important;
+      }
+    }
+
+    .bg-hover-dark-#{$i}-#{$key} {
+      &:hover {
+        background-color: mix(black, $val, $i * 10%) !important;
+        transition: all 0.3s !important;
+      }
+    }
+  }
+}
